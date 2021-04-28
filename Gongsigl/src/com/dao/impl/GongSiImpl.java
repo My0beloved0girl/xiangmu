@@ -829,4 +829,105 @@ public class GongSiImpl extends BaseDao implements GongSi {
 		return num;
 	}
 
+	@Override
+	public List<BuMenB> cxbm() {
+		Connection conn=getConnection();
+		PreparedStatement ps=null;
+		String sql="select * from bumenb ";
+		
+		List<BuMenB> list = null;
+		ResultSet rs = null;
+		try {
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			if (rs != null) {
+				list = new ArrayList<BuMenB>();
+				while (rs.next()) {
+					int id = rs.getInt("id");
+					String bmname= rs.getString("bmname");
+					list.add(new BuMenB(id, bmname));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DataBaseUtil.closeAll(rs, ps, conn);
+		}
+
+		return list;
+	}
+
+	@Override
+	public int scbm(int id) {
+		String sql="delete from bumenb where id=?";
+		int num=executeUpdate(sql,id);
+		return num;
+	}
+
+	@Override
+	public int xgbm(BuMenB bm) {
+		String sql="update bumenb set bmname=? where id=? ";
+		int num=executeUpdate(sql,bm.getBmname(),bm.getId());
+		return num;
+	}
+
+	@Override
+	public int xzbm(BuMenB bm) {
+		String sql="INSERT INTO `bumenb`(bmname) VALUES(?)";
+		int num=executeUpdate(sql,bm.getBmname());
+		return num;
+	}
+
+	@Override
+	public int pdbm(String name) {
+		Connection conn=getConnection();
+		PreparedStatement ps=null;
+		String sql="SELECT * FROM bumenb WHERE bmname='"+name+"'";
+		ResultSet rs = null;
+		int num=0;
+		try {
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			if (rs != null) {
+				while (rs.next()) {
+					num=1;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DataBaseUtil.closeAll(rs, ps, conn);
+		}
+
+		return num;
+	}
+
+	@Override
+	public List<BuMenB> hxbm(int idd) {
+		Connection conn=getConnection();
+		// TODO Auto-generated method stub
+		List<BuMenB> list = null;
+		ResultSet rs = null;
+		PreparedStatement ps=null;
+		String sql="SELECT * FROM bumenb WHERE id='"+idd+"'";
+		try {
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			if (rs != null) {
+				list = new ArrayList<BuMenB>();
+				while (rs.next()) {
+					int id = rs.getInt("id");
+					String bmname= rs.getString("bmname");
+					list.add(new BuMenB(id, bmname));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DataBaseUtil.closeAll(rs, ps, conn);
+		}
+
+		return list;
+	}
+
 }

@@ -263,6 +263,51 @@ public class GongSiServiceImpl implements GongSiService {
 		// TODO Auto-generated method stub
 		return gs.Dlm(loginName2, password2);
 	}
+
+	@Override
+	public Layui<BuMenB> cxbm() {
+		// TODO Auto-generated method stub
+		List<BuMenB> list=gs.cxbm();
+			int num=gs.SjZs();
+		Layui<BuMenB> layui=new Layui<BuMenB>();
+		
+		layui.setCode(0);
+		layui.setMsg("");
+		layui.setCount(num);
+		layui.setData(list);
+		
+		return layui;
+	}
+
+	@Override
+	public int scbm(int id) {
+		// TODO Auto-generated method stub
+		return gs.scbm(id);
+	}
+
+	@Override
+	public int xgbm(BuMenB bm) {
+		// TODO Auto-generated method stub
+		return gs.xgbm(bm);
+	}
+
+	@Override
+	public int xzbm(BuMenB bm) {
+		// TODO Auto-generated method stub
+		return gs.xzbm(bm);
+	}
+
+	@Override
+	public int pdbm(String name) {
+		// TODO Auto-generated method stub
+		return gs.pdbm(name);
+	}
+
+	@Override
+	public List<BuMenB> hxbm(int id) {
+		// TODO Auto-generated method stub
+		return gs.hxbm(id);
+	}
 	
 	
 	

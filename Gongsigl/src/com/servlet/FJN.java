@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.entity.BuMenB;
 import com.entity.JueSeB;
 import com.entity.Layui;
 import com.entity.QuanXianB;
@@ -75,6 +76,17 @@ public class FJN extends AbstractServlet {
 		
 		GongSiService dls=new GongSiServiceImpl();
 		Layui<JueSeB> layui=dls.JsZs();
+		PrintUtil.write(layui, response);
+        
+	}
+	
+	public void bmzs(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.setContentType("text/html;charset=utf-8");
+		request.setCharacterEncoding("utf-8");
+		
+		GongSiService dls=new GongSiServiceImpl();
+		Layui<BuMenB> layui=dls.cxbm();
 		PrintUtil.write(layui, response);
         
 	}

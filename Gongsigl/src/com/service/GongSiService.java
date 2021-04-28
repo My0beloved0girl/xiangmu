@@ -113,4 +113,19 @@ public interface GongSiService {
 			
 			//修改权限
 			public int XgQx(QuanXianB lm,int idd);
+			
+			
+			
+			//查询全部部门
+			public Layui<BuMenB> cxbm();
+			//验证部门是否重复
+			public int pdbm(String name);
+			//根据id回显部门
+			public List<BuMenB> hxbm(int id);
+			//删除部门
+			public int scbm(int id);
+			//修改部门
+			public int xgbm(BuMenB bm);
+			//新增部门
+			public int xzbm(BuMenB bm);
 }

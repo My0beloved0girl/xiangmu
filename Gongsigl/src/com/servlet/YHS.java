@@ -89,6 +89,22 @@ public class YHS extends AbstractServlet {
 		request.setAttribute("list3", list);
 		return "jsjjsp/quanjs";
 	}
+	
+	public String bman(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+		response.setContentType("text/html;charset=utf-8");
+		request.setCharacterEncoding("utf-8");
+		
+		int mfid=Integer.parseInt(request.getParameter("id"));
+		//System.out.println(mfid);
+		int uid=Integer.parseInt(request.getParameter("uid"));
+		GongSiService dls=new GongSiServiceImpl();
+		List<QuanXianB> list=dls.An(mfid,uid);
+		
+		//System.out.println(mfid);
+		
+		request.setAttribute("list3", list);
+		return "bumjsp/bumlist";
+	}
 
 	@Override
 	public Class getServletClass() {
